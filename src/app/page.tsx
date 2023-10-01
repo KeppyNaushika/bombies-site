@@ -5,12 +5,39 @@ const LineTo = dynamic(() => import("react-lineto"), {
   ssr: false,
 })
 
+import { DataTypes } from "sequelize"
+
+import { sequelize } from "./sequelize"
+import path from "path"
+
+const AchievementMap = sequelize.define("AchievementMap", {
+  roleId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: "key",
+  },
+  parentRoleId: {
+    type: DataTypes.STRING,
+  },
+  theme: {
+    type: DataTypes.STRING,
+    unique: "key",
+  },
+  description: {
+    type: DataTypes.STRING,
+  },
+  priority: {
+    type: DataTypes.NUMBER,
+  },
+})
+
 type achievementMap = {
   roleId: string
   parentRoleId: string | null
   theme: string
   description: string
   priority: number
+  has: boolean
 }
 
 const achievements: achievementMap[] = [
@@ -20,6 +47,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Dead End",
     priority: 0,
+    has: true,
   },
   {
     roleId: "通気性抜群",
@@ -27,6 +55,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "All Doors Opened in Dead End",
     priority: 1,
+    has: true,
   },
   {
     roleId: "無課金プレイヤー",
@@ -34,6 +63,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "No LC Weapons in Dead End",
     priority: 2,
+    has: true,
   },
   {
     roleId: "ウサイン・ボルト",
@@ -41,6 +71,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Dead End in 30mins",
     priority: 3,
+    has: true,
   },
   {
     roleId: "人間戦車",
@@ -48,6 +79,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Dead End Hard",
     priority: 4,
+    has: true,
   },
   {
     roleId: "不死不朽",
@@ -55,6 +87,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Dead End RIP",
     priority: 1,
+    has: true,
   },
   {
     roleId: "石器時代",
@@ -62,6 +95,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Buy Only Some Weapons & Armors in Dead End",
     priority: 1,
+    has: true,
   },
   {
     roleId: "氷炎の使者",
@@ -69,6 +103,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Buy Only Some Weapons & Armors in Dead End",
     priority: 1,
+    has: true,
   },
   {
     roleId: "魑魅魍魎",
@@ -76,6 +111,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Bad Blood",
     priority: 2,
+    has: true,
   },
   {
     roleId: "HIKAKIN",
@@ -83,6 +119,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "No LC Weapons in Bad Blood",
     priority: 1,
+    has: true,
   },
   {
     roleId: "真石器時代",
@@ -90,6 +127,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Buy Only Some Weapons & Armors in Bad Blood",
     priority: 2,
+    has: true,
   },
   {
     roleId: "百鬼夜行",
@@ -97,6 +135,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Bad Blood Hard",
     priority: 2,
+    has: true,
   },
   {
     roleId: "BB RIP Solo",
@@ -104,6 +143,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Bad Blood RIP",
     priority: 1,
+    has: true,
   },
   {
     roleId: "宇宙人との孤独な対話者",
@@ -111,6 +151,7 @@ const achievements: achievementMap[] = [
     theme: "Solo",
     description: "Reach R42 in Alien Arcadium",
     priority: 2,
+    has: true,
   },
 ]
 
@@ -205,7 +246,12 @@ const TopAchievementComponent = (
   </div>
 )
 
+// AchievementMap.sync().then(() => {
+//   const achievementsMap = AchievementMap.findAll()
+// })
+
 export default function Home() {
+  console.log(path.join(__dirname, "../data/bombies.sqlite"))
   return (
     <div className="">
       <div className="flex justify-around w-full">
