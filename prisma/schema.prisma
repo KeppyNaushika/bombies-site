@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AchievementMaps {
+  id           Int      @id @default(autoincrement())
+  roleId       String
+  parentRoleId String?
+  theme        String?
+  description  String?
+  priority     Decimal?
+  createdAt    DateTime
+  updatedAt    DateTime
+
+  @@unique([roleId, theme], map: "sqlite_autoindex_AchievementMaps_1")
+}
+
+model Achievements {
+  id                Int                  @id @default(autoincrement())
+  threadChannelId   String               @unique(map: "sqlite_autoindex_Achievements_1")
+  messageId         String
+  roleAchievementId String
+  memberId          String
+  approveMemberIds  Unsupported("json")?
+  denyMemberIds     Unsupported("json")?
+  createdAt         DateTime
+  updatedAt         DateTime
+}
+
+model Information {
+  id        Int      @id @default(autoincrement())
+  item      String   @unique(map: "sqlite_autoindex_Information_1")
+  content1  String?
+  content2  String?
+  content3  String?
+  content4  String?
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model PlayerData {
+  id        Int                  @id @default(autoincrement())
+  uuid      String               @unique(map: "sqlite_autoindex_PlayerData_1")
+  player    Unsupported("json")?
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Roles {
+  id              Int                       @id @default(autoincrement())
+  roleId          String                    @unique(map: "sqlite_autoindex_Roles_1")
+  roleType        String
+  description     String?
+  descriptionJp   String?
+  hasColorSkin    Unsupported("tinyint(1)")
+  colorSkinRoleId String?
+  createdAt       DateTime
+  updatedAt       DateTime
+}
+
+model StatusData {
+  id        Int                        @id @default(autoincrement())
+  uuid      String                     @unique(map: "sqlite_autoindex_StatusData_1")
+  online    Unsupported("tinyint(1)")?
+  gameType  String?
+  mode      String?
+  map       String?
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model Usernames {
+  id        Int      @id @default(autoincrement())
+  userId    String   @unique(map: "sqlite_autoindex_Usernames_1")
+  uuid      String
+  username  String
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+model RoleNames {
+  id        Int      @id @default(autoincrement())
+  roleId    String   @unique(map: "sqlite_autoindex_RoleNames_1")
+  roleName  String?
+  roleColor Decimal?
+  createdAt DateTime
+  updatedAt DateTime
+}
