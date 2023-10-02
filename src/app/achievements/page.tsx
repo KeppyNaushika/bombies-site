@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client"
 import { Decimal } from "@prisma/client/runtime/library"
 
-import Line from "../components/LineTo.module"
-import AchievementThemeComponent from "../components/AchievementThemeComponent"
+import Line from "../../components/LineTo.module"
+import AchievementThemeComponent from "../../components/AchievementThemeComponent"
 
 const prisma = new PrismaClient()
 

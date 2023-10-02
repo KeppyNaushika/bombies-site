@@ -1,9 +1,12 @@
 "use client"
-import { Decimal } from "@prisma/client/runtime/library"
-import LineTo from "react-lineto"
-import { AchievementMap } from "./page"
 
-const Line = ({parentAchievement}: {parentAchievement: AchievementMap}) => {
+import dynamic from "next/dynamic"
+const LineTo = dynamic(() => import("react-lineto"), {
+  ssr: false,
+})
+import { AchievementMap } from "../app/page"
+
+const Line = ({ parentAchievement }: { parentAchievement: AchievementMap }) => {
   return (
     <LineTo
       from={`${parentAchievement.roleId}-first`}
