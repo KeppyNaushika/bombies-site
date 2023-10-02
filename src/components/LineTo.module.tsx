@@ -1,10 +1,11 @@
 "use client"
-
 import dynamic from "next/dynamic"
+
 const LineTo = dynamic(() => import("react-lineto"), {
   ssr: false,
 })
-import { AchievementMap } from "../app/page"
+
+import { AchievementMap } from "./AchievementsMap"
 
 const Line = ({ parentAchievement }: { parentAchievement: AchievementMap }) => {
   return (
