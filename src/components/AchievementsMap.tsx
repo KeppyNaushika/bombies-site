@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client"
 import { Decimal } from "@prisma/client/runtime/library"
 
 import TopAchievements from "@/components/TopAchievements"
+import AchievementThemeSelector from "@/components/AchievementThemeSelector"
 
 const prisma = new PrismaClient()
 
@@ -67,6 +68,7 @@ const AchievementsMap_ = async () => {
   return (
     <div className="flex px-10 py-20">
       <div className="flex flex-col justify-center">
+        <AchievementThemeSelector achievements={achievements} />
         <TopAchievements achievements={achievements} />
       </div>
     </div>

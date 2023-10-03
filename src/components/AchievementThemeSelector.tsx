@@ -2,8 +2,13 @@
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
+import { AchievementMap } from "@/components/AchievementsMap"
 
-const AchievementThemeSelector = () => {
+const AchievementThemeSelector = ({
+  achievements,
+}: {
+  achievements: AchievementMap[]
+}) => {
   const [isClick, setIsClick] = useState(false)
   const [isHover, setIsHover] = useState(false)
   const toggleShow = () => {
@@ -13,6 +18,11 @@ const AchievementThemeSelector = () => {
 
   const searchParams = useSearchParams()
   const theme = searchParams.get("theme")
+
+  const themesSet = new Set(
+    achievements.map((achievement) => achievement.theme).filter(Boolean)
+  )
+  const themes = [...themesSet]
 
   return (
     <div
@@ -33,31 +43,16 @@ const AchievementThemeSelector = () => {
       </div>
       {isClick || isHover ? (
         <>
-          <Link href={"/achievements?theme=Dead End"}>
-            <div className="relative flex h-12 w-full items-center justify-center border-t-2">
-              Dead End
-            </div>
-          </Link>
-          <Link href={"/achievements?theme=Bad Blood"}>
-            <div className="relative flex h-12 w-full items-center justify-center border-t-2">
-              Bad Blood
-            </div>
-          </Link>
-          <Link href={"/achievements?theme=Alien Arcadium"}>
-            <div className="relative flex h-12 w-full items-center justify-center border-t-2">
-              Alien Arcadium
-            </div>
-          </Link>
-          <Link href={"/achievements?theme=Solo"}>
-            <div className="relative flex h-12 w-full items-center justify-center border-t-2">
-              Solo
-            </div>
-          </Link>
-          <Link href={"/achievements?theme=Duo"}>
-            <div className="relative flex h-12 w-full items-center justify-center border-t-2">
-              Duo
-            </div>
-          </Link>
+          {themes.map((theme, index) => (
+            <Link
+              key={"achievementThemeSelectorLink" + index}
+              href={"/achievements?theme=" + theme}
+            >
+              <div className="relative flex h-12 w-full items-center justify-center border-t-2">
+                {theme}
+              </div>
+            </Link>
+          ))}
         </>
       ) : (
         <></>
