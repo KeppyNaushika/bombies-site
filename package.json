@@ -9,15 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.3.1",
+    "@prisma/client": "^5.4.2",
     "child_process": "^1.0.2",
-    "next": "latest",
+    "next": "^13.5.4",
     "path": "^0.12.7",
     "pg-hstore": "^2.3.4",
     "react": "latest",
     "react-dom": "latest",
     "react-lineto": "^3.3.0",
-    "sequelize": "^6.33.0",
     "sqlite3": "^5.1.6",
     "uuidv4": "^6.2.13"
   },
@@ -33,7 +32,7 @@
     "postcss": "latest",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
-    "prisma": "^5.3.1",
+    "prisma": "^5.4.2",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

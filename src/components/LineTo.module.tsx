@@ -5,7 +5,7 @@ const LineTo = dynamic(() => import("react-lineto"), {
   ssr: false,
 })
 
-import { AchievementMap } from "./AchievementsMap"
+import { AchievementMap } from "@/components/type"
 
 const Line = ({ parentAchievement }: { parentAchievement: AchievementMap }) => {
   return (

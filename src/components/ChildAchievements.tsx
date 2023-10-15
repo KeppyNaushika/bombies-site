@@ -1,4 +1,4 @@
-import { AchievementMap } from "./AchievementsMap"
+import { AchievementMap } from "@/components/type"
 import Line from "./LineTo.module"
 
 const ChildAchievements = ({

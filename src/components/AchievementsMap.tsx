@@ -6,16 +6,14 @@ import AchievementThemeSelector from "@/components/AchievementThemeSelector"
 import { useEffect, useState } from "react"
 import { AchievementMap } from "@/components/type"
 
-const AchievementsMap_ = async () => {
+export default function AchievementMap() {
   const [achievements, setAchievements] = useState<AchievementMap[]>([])
-  console.log(achievements)
+  // console.log(achievements)
 
   useEffect(() => {
     const fetchAchievements = async () => {
-      const res = await fetch("/api/bombiesdb")
-      console.log(res)
-      const newAchievements = await res.json()
-      console.log(newAchievements)
+      const res = await fetch("https://bombies.keppy.jp/api")
+      const newAchievements = (await res.json()).data
       setAchievements(newAchievements)
     }
     fetchAchievements()
@@ -30,8 +28,4 @@ const AchievementsMap_ = async () => {
       </div>
     </div>
   )
-}
-
-export default function AchievementMap() {
-  return <AchievementsMap_ />
 }

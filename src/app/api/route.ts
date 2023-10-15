@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
-import { AchievementMap } from "../../../components/type"
+import { AchievementMap } from "@/components/type"
 
 const prisma = new PrismaClient()
 
 // const AchievementMapFetch = async () => {
-export async function POST(req: NextRequest) {
+export async function GET() {
   const achievementMaps = await prisma.achievementMaps.findMany({
     select: {
       roleId: true,
@@ -17,7 +17,6 @@ export async function POST(req: NextRequest) {
       // updatedAt: true,
     },
   })
-  console.log(achievementMaps)
   const RoleNames = await prisma.roleNames.findMany({
     select: {
       roleId: true,
@@ -47,8 +46,5 @@ export async function POST(req: NextRequest) {
     }
     return achievement
   })
-  // return achievements
-  return NextResponse.json(achievements)
+  return NextResponse.json({ data: achievements })
 }
-
-// export default AchievementMapFetch

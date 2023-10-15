@@ -1,7 +1,7 @@
 "use client"
 
 import ChildAchievements from "@/components/ChildAchievements"
-import { AchievementMap } from "@/components/AchievementsMap"
+import { AchievementMap } from "@/components/type"
 import { useRouter, useSearchParams } from "next/navigation"
 
 const TopAchievements = ({

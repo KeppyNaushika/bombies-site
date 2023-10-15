@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
-import { AchievementMap } from "@/components/AchievementsMap"
+import { AchievementMap } from "@/components/type"
 
 const AchievementThemeSelector = ({
   achievements,
