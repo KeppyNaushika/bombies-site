@@ -39,7 +39,7 @@ const AchievementThemeSelector = ({
         onClick={toggleShow}
         onMouseEnter={() => setIsHover(true)}
       >
-        {isClick || isHover ? "▼" : theme ?? "▼"}
+        {isClick || isHover ? "▼" : theme ?? "Select"}
       </div>
       {isClick || isHover ? (
         <>

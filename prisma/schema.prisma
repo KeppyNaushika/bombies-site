@@ -91,3 +91,9 @@ model RoleNames {
   createdAt DateTime
   updatedAt DateTime
 }
+
+model hypixelPlayerData {
+  id   Int     @id @unique(map: "sqlite_autoindex_hypixelPlayerData_1") @default(autoincrement())
+  uuid String  @unique(map: "sqlite_autoindex_hypixelPlayerData_2")
+  data String?
+}
