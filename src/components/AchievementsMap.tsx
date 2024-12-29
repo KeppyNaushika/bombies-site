@@ -8,7 +8,6 @@ import type { AchievementMap } from "@/components/type"
 
 export default function AchievementMap() {
   const [achievements, setAchievements] = useState<AchievementMap[]>([])
-  // console.log(achievements)
 
   useEffect(() => {
     const fetchAchievements = async () => {
